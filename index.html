@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Project Starlight — Yeasin &amp; Meghna, 2 Years</title>
+<meta name="description" content="A cinematic love story — two years of Yeasin and Meghna, told in stars, letters, and light.">
+<meta name="theme-color" content="#030712">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Project Starlight — Happy 2 Years, Meghna ❤️">
+<meta property="og:description" content="Every love story begins somewhere. Ours began on 14 July 2024.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/og-cover.jpg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Project Starlight — Happy 2 Years, Meghna ❤️">
+<meta name="twitter:description" content="Every love story begins somewhere. Ours began on 14 July 2024.">
+<meta name="twitter:image" content="images/og-cover.jpg">
+
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Poppins:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= AMBIENT / BACKGROUND LAYERS (shared across whole page) ================= -->
+<div class="bg-layers" aria-hidden="true">
+  <canvas id="starfield"></canvas>
+  <div class="aurora aurora-a"></div>
+  <div class="aurora aurora-b"></div>
+  <canvas id="nebula"></canvas>
+  <canvas id="fireflies"></canvas>
+  <canvas id="hearts-canvas"></canvas>
+  <div class="rain" id="rain"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+</div>
+
+<!-- ================= SKIP LINK ================= -->
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ================= MUSIC ================= -->
+<audio id="bgMusic" loop preload="none">
+  <source src="music/our-song.mp3" type="audio/mpeg">
+</audio>
+<div class="music-widget" id="musicWidget" role="group" aria-label="Background music controls">
+  <button class="music-toggle" id="musicToggle" aria-pressed="false" aria-label="Play background music">
+    <span class="music-bars"><i></i><i></i><i></i></span>
+  </button>
+  <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="45" aria-label="Volume">
+</div>
+
+<!-- ================= INTRO / OPENING EXPERIENCE ================= -->
+<section id="intro" class="intro" aria-label="Opening">
+  <div class="intro-inner">
+    <p class="intro-line" data-line="0">Every love story begins somewhere&hellip;</p>
+    <p class="intro-line" data-line="1">Ours began on</p>
+    <p class="intro-date" data-line="2">14 July 2024</p>
+    <p class="intro-line" data-line="3">You changed my life.</p>
+    <button id="enterBtn" class="glass-btn enter-btn" type="button">
+      <span>Enter Our Story</span>
+    </button>
+  </div>
+  <div class="intro-scroll-hint" aria-hidden="true">tap anywhere to begin</div>
+</section>
+
+<!-- ================= MAIN SITE ================= -->
+<div id="siteWrap" class="site-wrap" hidden>
+
+<!-- NAV -->
+<nav class="floating-nav" id="floatingNav" aria-label="Section navigation">
+  <a href="#hero" class="nav-dot" data-label="Home"><span></span></a>
+  <a href="#timeline" class="nav-dot" data-label="Timeline"><span></span></a>
+  <a href="#gallery" class="nav-dot" data-label="Gallery"><span></span></a>
+  <a href="#reasons" class="nav-dot" data-label="Reasons"><span></span></a>
+  <a href="#letters" class="nav-dot" data-label="Letters"><span></span></a>
+  <a href="#ending" class="nav-dot" data-label="Finale"><span></span></a>
+</nav>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="hero section" aria-label="Anniversary">
+    <p class="eyebrow">Md Yeasin Arafat &amp; Meghna Hannan</p>
+    <h1 class="hero-title">Happy <span class="grad-text">2 Years</span> Together</h1>
+    <p class="hero-sub">14 July 2024 — 14 July 2026</p>
+
+    <div class="counter" id="liveCounter" aria-live="polite">
+      <div class="counter-unit"><span class="counter-value" id="cYears">00</span><span class="counter-label">Years</span></div>
+      <div class="counter-unit"><span class="counter-value" id="cMonths">00</span><span class="counter-label">Months</span></div>
+      <div class="counter-unit"><span class="counter-value" id="cDays">00</span><span class="counter-label">Days</span></div>
+      <div class="counter-unit"><span class="counter-value" id="cHours">00</span><span class="counter-label">Hours</span></div>
+      <div class="counter-unit"><span class="counter-value" id="cMinutes">00</span><span class="counter-label">Minutes</span></div>
+      <div class="counter-unit"><span class="counter-value" id="cSeconds">00</span><span class="counter-label">Seconds</span></div>
+    </div>
+    <p class="counter-caption">and every second, I'd choose you again.</p>
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section id="timeline" class="section timeline-section" aria-label="Our timeline">
+    <p class="eyebrow">Chapter One</p>
+    <h2 class="section-title">Every Star Is a Memory</h2>
+    <p class="section-sub">Click a star to relive it.</p>
+
+    <div class="timeline-track-wrap">
+      <div class="timeline-line" aria-hidden="true"></div>
+      <ol class="timeline-track" id="timelineTrack"><!-- injected by JS --></ol>
+    </div>
+  </section>
+
+  <!-- Modal for timeline memories -->
+  <div class="modal-backdrop" id="memoryModal" aria-hidden="true">
+    <div class="modal-card glass" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close memory">&times;</button>
+      <div class="modal-img-wrap" id="modalImgWrap"></div>
+      <p class="modal-date" id="modalDate"></p>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-place" id="modalPlace"></p>
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="section gallery-section" aria-label="Photo gallery">
+    <p class="eyebrow">Chapter Two</p>
+    <h2 class="section-title">Moments We Kept</h2>
+    <div class="masonry" id="masonryGrid"><!-- injected by JS --></div>
+  </section>
+
+  <div class="modal-backdrop" id="imgModal" aria-hidden="true">
+    <div class="modal-card img-modal-card" role="dialog" aria-modal="true" aria-label="Enlarged photo">
+      <button class="modal-close" id="imgModalClose" aria-label="Close photo">&times;</button>
+      <img id="imgModalPic" src="" alt="">
+    </div>
+  </div>
+
+  <!-- ============ REASONS ============ -->
+  <section id="reasons" class="section reasons-section" aria-label="Reasons I love you">
+    <p class="eyebrow">Chapter Three</p>
+    <h2 class="section-title">তোমাকে ভালোবাসার ৫০টি কারণ</h2>
+    <p class="section-sub">50 Reasons I Love You</p>
+    <div class="reasons-grid" id="reasonsGrid"><!-- injected by JS --></div>
+  </section>
+
+  <!-- ============ LOVE LETTERS ============ -->
+  <section id="letters" class="section letters-section" aria-label="Love letters">
+    <p class="eyebrow">Chapter Four</p>
+    <h2 class="section-title">Letters I Never Sent Out Loud</h2>
+    <p class="section-sub">Tap an envelope to open it.</p>
+    <div class="envelopes" id="envelopesGrid"><!-- injected by JS --></div>
+  </section>
+
+  <div class="modal-backdrop" id="letterModal" aria-hidden="true">
+    <div class="modal-card letter-card" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+      <button class="modal-close" id="letterClose" aria-label="Close letter">&times;</button>
+      <div class="letter-paper">
+        <h3 class="letter-title" id="letterTitle"></h3>
+        <div class="letter-body" id="letterBody"></div>
+        <p class="letter-sign">— Yeasin</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECRET ENDING ============ -->
+  <section id="ending" class="section ending-section" aria-label="Finale">
+    <div class="ending-pre" id="endingPre">
+      <p class="eyebrow">Final Chapter</p>
+      <h2 class="section-title">One Last Thing, Meghna</h2>
+      <p class="section-sub">Some things need a password. Us? Never. But just this once&hellip;</p>
+
+      <form class="passcode-form glass" id="passcodeForm">
+        <label for="passcodeInput" class="passcode-label">Enter the passcode</label>
+        <input type="text" id="passcodeInput" class="passcode-input" autocomplete="off" inputmode="text" placeholder="••••••••">
+        <button type="submit" class="glass-btn">Unlock</button>
+        <p class="passcode-error" id="passcodeError" role="alert" aria-live="assertive"></p>
+      </form>
+    </div>
+
+    <div class="finale" id="finale" aria-hidden="true">
+      <canvas id="heartBurstCanvas"></canvas>
+      <div class="finale-text">
+        <p class="finale-line" id="finaleLine1">Happy 2 Years My Love ❤️</p>
+        <p class="finale-line" id="finaleLine2">I Will Always Choose You.</p>
+        <p class="finale-line" id="finaleLine3">Forever isn't enough with you.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>Made with every heartbeat, by Yeasin — for Meghna.</p>
+  </footer>
+
+</main>
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
